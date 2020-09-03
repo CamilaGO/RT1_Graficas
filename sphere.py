@@ -1,4 +1,8 @@
-from lib2 import *
+from lib import *
+
+# ===============================================================
+# Paula Camila Gonzalez Ortega - 18398
+# ===============================================================
 
 class Sphere(object):
   def __init__(self, center, radius, material):

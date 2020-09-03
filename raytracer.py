@@ -1,10 +1,15 @@
-from lib2 import *
+from lib import *
 from sphere import *
 from math import pi, tan
 from materials import *
 
+# ===============================================================
+# Paula Camila Gonzalez Ortega - 18398
+# ===============================================================
+
 BLACK = color(0, 0, 0)
 WHITE = color(255, 255, 255)
+BLUE = color(0, 49, 82)
 
 
 class Raytracer(object):
@@ -16,7 +21,7 @@ class Raytracer(object):
 
   def clear(self):
     self.pixels = [
-      [BLACK for x in range(self.width)]
+      [BLUE for x in range(self.width)]
       for y in range(self.height)
     ]
 
@@ -45,7 +50,7 @@ class Raytracer(object):
   	if impacted_material:
   		return impacted_material.diffuse
   	else:
-  		return color(0, 0, 0)
+  		return BLUE
 
   """def cast_ray(self, orig, direction, sphere):
     if sphere.ray_intersect(orig, direction):
@@ -59,9 +64,6 @@ class Raytracer(object):
       for x in range(self.width):
         i =  (2*(x + 0.5)/self.width - 1)*self.width/self.height*tan(alfa/2)
         j =  (1 - 2*(y + 0.5)/self.height)*tan(alfa/2)
-        # x = int(x)
-        # y = int(y)
-        # print(x, y)
         direction = norm(V3(i, j, -1))
         self.pixels[y][x] = self.cast_ray(V3(0,0,0), direction)
 
@@ -76,9 +78,23 @@ class Raytracer(object):
 
 r = Raytracer(1000, 1000)
 r.scene = [
-	Sphere(V3(0,-1.5,-10), 1.5, ivory),
-    Sphere(V3(2,-1,-12), 2, snow)
+  Sphere(V3(-0.6, -2.1,-10), 0.1, button),
+  Sphere(V3(-0.2, -1.9,-10), 0.1, button),
+  Sphere(V3(0.2, -1.9,-10), 0.1, button),
+  Sphere(V3(0.6, -2.1,-10), 0.1, button),
+
+  Sphere(V3(0, -2.5,-10), 0.3, carrot),
+
+  Sphere(V3(0.5, -3,-10), 0.1, button),
+  Sphere(V3(-0.5, -3,-10), 0.1, button),
+  Sphere(V3(0.5, -3,-10), 0.2, eye),
+  Sphere(V3(-0.5, -3,-10), 0.2, eye),
+
+  Sphere(V3(0, -0.4,-10), 0.3, button),
+  Sphere(V3(0, 1,-10), 0.4, button),
+  Sphere(V3(0, 3,-10), 0.5, button),
+  Sphere(V3(0, -2.5,-10), 1.3, snow),
+	Sphere(V3(0, 0,-10), 1.8, snow),
+  Sphere(V3(0, 3,-12), 2.8, snow)
 ]
-#s = Sphere(V3(0, 0, -16), 2)
-#r.render()
 r.display()
